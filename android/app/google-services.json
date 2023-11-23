@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "71707683184",
+    "project_id": "news-app-9bc60",
+    "storage_bucket": "news-app-9bc60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71707683184:android:5445bbb4081ca6a7aa87b5",
+        "android_client_info": {
+          "package_name": "com.example.booking_hotel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71707683184-qek3ap288bdja80mtdaep8l1l4c7prv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2AqiMEiXDnu-ADYddPC8ohfbXVvko0iE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71707683184-qek3ap288bdja80mtdaep8l1l4c7prv5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "71707683184-80vd4kcdj6do1e4u5a9qta6sb0q2v46a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bookingHotel"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71707683184:android:7501244507b412a1aa87b5",
+        "android_client_info": {
+          "package_name": "com.example.latihan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71707683184-qek3ap288bdja80mtdaep8l1l4c7prv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2AqiMEiXDnu-ADYddPC8ohfbXVvko0iE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71707683184-qek3ap288bdja80mtdaep8l1l4c7prv5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "71707683184-80vd4kcdj6do1e4u5a9qta6sb0q2v46a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bookingHotel"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
