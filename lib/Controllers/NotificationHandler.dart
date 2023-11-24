@@ -67,7 +67,7 @@ class FirebaseMessagingHandler {
 
       //handler when open the message
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('Message opened from notification: ${message.notification?.title}');
+        print('Message opened from notification: ${message.notification?.title}');
       });
     }
 
