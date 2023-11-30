@@ -1,6 +1,7 @@
 import 'package:booking_hotel/Controllers/HotelDetailController.dart';
 import 'package:booking_hotel/Controllers/AuthController.dart';
 import 'package:booking_hotel/Models/HotelModel.dart';
+import 'package:booking_hotel/Views/HotelDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
     "AC",
     "Gym"
   ];
-
+  
   final AuthController _authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,12 @@ class HomePage extends StatelessWidget {
               _authController.logout();
             },
           ),
+          IconButton(
+            icon: Icon(Icons.person), // Replace with your preferred profile icon
+            onPressed: () {
+              Get.toNamed('/profil'); // Navigate to the profile page
+            },
+          ),
         ],
       ),
       body: HotelDetailPage()
@@ -45,7 +52,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HotelDetailPage extends StatelessWidget {
+/*class HotelDetailPage extends StatelessWidget {
   final HotelModel model = Get.find();
   final HotelDetailController controller = Get.find();
   
@@ -55,12 +62,6 @@ class HotelDetailPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/profil'); // Navigasi ke halaman profil
-              },
-              child: Text('Buka Profil'),
-            ),
             ElevatedButton(
               onPressed: () {
                 Get.toNamed('/database'); // Navigasi ke halaman profil
@@ -200,4 +201,4 @@ class HotelDetailPage extends StatelessWidget {
       ),
     );
   }
-}
+}*/ 

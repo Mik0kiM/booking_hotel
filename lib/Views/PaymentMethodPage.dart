@@ -4,6 +4,8 @@ import '../Controllers/HotelDetailController.dart';
 import '../Models/HotelModel.dart';
 
 class PaymentMethodPage extends StatelessWidget {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final PaymentModel model;
   final PaymentMethodController controller;
 
@@ -22,14 +24,29 @@ class PaymentMethodPage extends StatelessWidget {
           Column(
             children: model.metodePembayaranList
                 .map((metode) => RadioListTile(
-              title: Text(metode),
-              value: metode,
-              groupValue: model.paymentMethod,
-              onChanged: (String? selectedMetode) {
-                controller.changePaymentMethod(selectedMetode!);
-              },
-            ))
+                      title: Text(metode),
+                      value: metode,
+                      groupValue: model.paymentMethod,
+                      onChanged: (String? selectedMetode) {
+                        controller.changePaymentMethod(selectedMetode!);
+                      },
+                    ))
                 .toList(),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Enter Your Information:'),
+              SizedBox(height: 16.0),
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+              ),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

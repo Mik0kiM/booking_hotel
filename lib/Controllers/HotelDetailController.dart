@@ -1,3 +1,4 @@
+import 'package:booking_hotel/Models/BookingModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,6 +47,8 @@ class HotelDetailController extends GetxController{
 
 class PaymentMethodController {
   final PaymentModel model;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
   PaymentMethodController(this.model);
 
@@ -54,6 +57,12 @@ class PaymentMethodController {
   }
 
   void confirmPayment() {
-    // Tambahkan logika pembayaran di sini
+    BookingModel bookingModel = BookingModel(
+      name: nameController.text,
+      email: emailController.text,
+    );
+    
+    Get.back();
+    Get.snackbar("Booking Hotel", "Confirmed");
   }
 }

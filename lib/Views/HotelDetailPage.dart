@@ -1,42 +1,18 @@
-/*import 'package:flutter/material.dart';
+import 'package:booking_hotel/Controllers/HotelDetailController.dart';
+import 'package:booking_hotel/Models/HotelModel.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:booking_hotel/Controllers/auth_controller.dart';
-
-import '../Controllers/HotelDetailController.dart';
-import '../Models/HotelModel.dart';
 
 class HotelDetailPage extends StatelessWidget {
-  final AuthController _authController = Get.put(AuthController());
   final HotelModel model = Get.find();
   final HotelDetailController controller = Get.find();
-
-  int jumlahOrang = 1;
-
-  @override
+  
+ @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Detail Hotel"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
-            onPressed: () {
-              _authController.logout();
-            },
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/profil'); // Navigasi ke halaman profil
-              },
-              child: Text('Buka Profil'),
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
             ElevatedButton(
               onPressed: () {
                 Get.toNamed('/database'); // Navigasi ke halaman profil
@@ -138,43 +114,42 @@ class HotelDetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 18,
-                horizontal: 10,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Nearby Location',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 18,
+              horizontal: 10,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Nearby Location',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed('/webnearby');
-                    },
-                    child: Ink(
-                      child: const Text(
-                        'See All',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 13,
-                        ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed('/webnearby');
+                  },
+                  child: Ink(
+                    child: const Text(
+                      'See All',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 13,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-}*/
+}
