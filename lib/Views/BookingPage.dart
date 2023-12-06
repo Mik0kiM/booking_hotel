@@ -1,4 +1,4 @@
-// BookingPage.dart
+/*import 'package:booking_hotel/Controllers/DatabaseController.dart';
 import 'package:booking_hotel/Models/BookingModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +9,8 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
   int numberOfGuests = 1;
 
   @override
@@ -37,19 +37,21 @@ class _BookingPageState extends State<BookingPage> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                // Validate and save the booking information
-                if (validateInputs()) {
-                  BookingModel bookingModel = BookingModel(
-                    name: nameController.text,
-                    email: emailController.text,
-                  );
-                  // Handle the booking logic, you can pass the bookingModel to your controller
-                  // or use it as needed.
-                  // For simplicity, we'll print the data for now.
-                  print("Booking Information: $bookingModel");
+                final name = nameController.text;
+                final email = emailController.text;
+                if (name.isNotEmpty && email.isNotEmpty) {
+                final booking = Booking(
+                  name: name,
+                  email: email,
+                );
+                DatabaseController databaseController = Get.find<DatabaseController>();
+                databaseController.addExpenseToAppwrite(booking);
 
-                  // Close the booking page
-                  Get.back();
+                nameController.clear();
+                emailController.clear();
+                
+                setState(() {});
+                //Get.back();
                 }
               },
               child: Text('Book Now'),
@@ -69,3 +71,4 @@ class _BookingPageState extends State<BookingPage> {
     return true;
   }
 }
+*/

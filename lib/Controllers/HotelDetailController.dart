@@ -57,7 +57,7 @@ class PaymentMethodController {
   }
 
   void confirmPayment() {
-    BookingModel bookingModel = BookingModel(
+    Booking bookingModel = Booking(
       name: nameController.text,
       email: emailController.text,
     );

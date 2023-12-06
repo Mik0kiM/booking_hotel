@@ -1,15 +1,26 @@
+import 'package:appwrite/models.dart';
+import 'package:booking_hotel/Controllers/DatabaseController.dart';
+import 'package:booking_hotel/Controllers/HotelDetailController.dart';
+import 'package:booking_hotel/Models/BookingModel.dart';
+import 'package:booking_hotel/Models/HotelModel.dart';
+import 'package:booking_hotel/Views/BookingListPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Controllers/HotelDetailController.dart';
-import '../Models/HotelModel.dart';
+import 'package:get/get.dart';
 
-class PaymentMethodPage extends StatelessWidget {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+class PaymentMethodPage extends StatefulWidget {
   final PaymentModel model;
   final PaymentMethodController controller;
 
   PaymentMethodPage({required this.model, required this.controller});
+
+  @override
+  _PaymentMethodPageState createState() => _PaymentMethodPageState();
+}
+
+class _PaymentMethodPageState extends State<PaymentMethodPage> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +33,15 @@ class PaymentMethodPage extends StatelessWidget {
         children: [
           Text("Pilih Metode Pembayaran"),
           Column(
-            children: model.metodePembayaranList
+            children: widget.model.metodePembayaranList
                 .map((metode) => RadioListTile(
                       title: Text(metode),
                       value: metode,
-                      groupValue: model.paymentMethod,
+                      groupValue: widget.model.paymentMethod,
                       onChanged: (String? selectedMetode) {
-                        controller.changePaymentMethod(selectedMetode!);
+                        setState(() {
+                          widget.controller.changePaymentMethod(selectedMetode!);
+                        });
                       },
                     ))
                 .toList(),
@@ -52,39 +65,83 @@ class PaymentMethodPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Harga per malam:"),
-              Text("\$${model.pricePerNight.toStringAsFixed(2)}"),
+              Text("\$${widget.model.pricePerNight.toStringAsFixed(2)}"),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Pajak:"),
-              Text("\$${model.tax.toStringAsFixed(2)}"),
+              Text("\$${widget.model.tax.toStringAsFixed(2)}"),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Jumlah Orang:"),
-              Text("${model.numberOfPeople}"),
+              Text("${widget.model.numberOfPeople}"),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Total:"),
-              Text("\$${model.total.toStringAsFixed(2)}"),
+              Text("\$${widget.model.total.toStringAsFixed(2)}"),
             ],
           ),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              controller.confirmPayment();
+              final name = nameController.text;
+              final email = emailController.text;
+              if (name.isNotEmpty && email.isNotEmpty) {
+              final booking = Booking(
+                name: name,
+                email: email,
+              );
+              DatabaseController databaseController = Get.find<DatabaseController>();
+              databaseController.addBookingToAppwrite(booking);
+
+              nameController.clear();
+              emailController.clear();
+              
+              setState(() {});
+              }
             },
             child: Text("Confirm"),
           ),
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                DatabaseController databaseController = Get.find<DatabaseController>();
+                List<Document> expenses = await databaseController.getBookingFromAppwrite();
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookingListPage(bookings: mapDocumentsToBookings(expenses)),
+                  ),
+                );
+              } catch (error) {
+                print("Error fetching expenses: $error");
+              }
+            },
+            child: Text("See List"),
+          )
+
         ],
       ),
     );
   }
+
+  List<Booking> mapDocumentsToBookings(List<Document> documents) {
+  return documents.map((document) {
+    final data = document.data;
+    return Booking(
+      name: data['Name'] ?? '',
+      email: data['Email'] ?? '',
+    );
+  }).toList();
+}
+
 }

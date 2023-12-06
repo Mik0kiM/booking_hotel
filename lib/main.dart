@@ -1,4 +1,5 @@
 import 'package:booking_hotel/Controllers/AuthController.dart';
+import 'package:booking_hotel/Controllers/DatabaseController.dart';
 import 'package:booking_hotel/Controllers/NotificationHandler.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ void main() async {
   await Get.putAsync(() async => await SharedPreferences.getInstance());
   await FirebaseMessagingHandler().initPushNotification();
   await FirebaseMessagingHandler().initLocalNotification();
+  Get.put(DatabaseController());
   runApp(MyApp());
 }
 

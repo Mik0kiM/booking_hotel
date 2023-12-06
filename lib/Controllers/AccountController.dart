@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 
 class AccountController extends ClientController {
   Account? account;
+  RxBool isLoading = false.obs;
+  RxBool isLoggedIn = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -13,7 +16,7 @@ class AccountController extends ClientController {
     account = Account(client);
   }
 
-  Future Register(Map map) async {
+  Future<void> createAccount(Map<String, dynamic> map) async {
     try {
       final result = await account!.create(
         userId: map['userId'],
@@ -21,26 +24,14 @@ class AccountController extends ClientController {
         password: map['password'],
         name: map['name'],
       );
-      print("AccountController:: createAccount $result");
-      Get.snackbar('Success', 'Registration successful',
-        backgroundColor: Colors.green);
       Get.off(LoginPage());
+      print("AccountController:: createAccount $result");
     } catch (error) {
-      Get.defaultDialog(
-        title: "Error Account",
-        titlePadding: const EdgeInsets.only(top: 15, bottom: 5),
-        titleStyle: Get.context?.theme.textTheme.titleLarge,
-        content: Text(
-          "$error",
-          style: Get.context?.theme.textTheme.bodyMedium,
-          textAlign: TextAlign.center,
-        ),
-        contentPadding: const EdgeInsets.only(top: 5, left: 15, right: 15),
-      );
+      _showErrorDialog("Error Account", "$error");
     }
   }
 
-  Future createEmailSession(Map map) async {
+  Future<void> createEmailSession(Map<String, dynamic> map) async {
     try {
       final result = await account!.createEmailSession(
         email: map['email'],
@@ -48,17 +39,38 @@ class AccountController extends ClientController {
       );
       print("AccountController:: createEmailSession $result");
     } catch (error) {
-      Get.defaultDialog(
-        title: "Error Account",
-        titlePadding: const EdgeInsets.only(top: 15, bottom: 5),
-        titleStyle: Get.context?.theme.textTheme.titleLarge,
-        content: Text(
-          "$error",
-          style: Get.context?.theme.textTheme.bodyMedium,
-          textAlign: TextAlign.center,
-        ),
-        contentPadding: const EdgeInsets.only(top: 5, left: 15, right: 15),
-      );
+      _showErrorDialog("Error Account", "$error");
     }
+  }
+
+  Future<void> loginUser(String email, String password) async {
+    try {
+      isLoading.value = true;
+      final result = await account!.createEmailSession(
+        email: email,
+        password: password,
+      );
+      // If login is successful, mark user as logged in
+      isLoggedIn.value = true;
+      isLoading.value = false;
+      print("AccountController:: loginUser $result");
+    } catch (error) {
+      isLoading.value = false;
+      _showErrorDialog("Error Account", "$error");
+    }
+  }
+
+  void _showErrorDialog(String title, String content) {
+    Get.defaultDialog(
+      title: title,
+      titlePadding: const EdgeInsets.only(top: 15, bottom: 5),
+      titleStyle: Get.context?.theme.textTheme.titleLarge,
+      content: Text(
+        content,
+        style: Get.context?.theme.textTheme.bodyMedium,
+        textAlign: TextAlign.center,
+      ),
+      contentPadding: const EdgeInsets.only(top: 5, left: 15, right: 15),
+    );
   }
 }

@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     hotelModel = Get.put(HotelModel(
-      name: "Nama Hotel Contoh",
+      hotel: "Nama Hotel Contoh",
       location: "Lokasi Hotel Contoh",
       pricePerNight: 150.0,
       facilities: facilities,

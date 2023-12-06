@@ -32,7 +32,7 @@ class HotelDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    model.name,
+                    model.hotel,
                     style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                   ),
                   Text(model.location),

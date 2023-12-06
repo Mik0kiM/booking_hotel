@@ -43,7 +43,7 @@ class RegisterPage extends StatelessWidget {
                   'password': passwordController.text,
                   'name': nameController.text,
                 };
-                await accountController.Register(map);
+                await accountController.createAccount(map);
               },
               child: Text('Create Account'),
             ),

@@ -1,5 +1,5 @@
 class HotelModel {
-  final String name;
+  final String hotel;
   final String location;
   final double pricePerNight;
   final  List<String> facilities;
@@ -7,7 +7,7 @@ class HotelModel {
   final String description;
 
   HotelModel({
-    required this.name,
+    required this.hotel,
     required this.location,
     required this.pricePerNight,
     required this.facilities,
