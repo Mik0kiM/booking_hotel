@@ -27,9 +27,11 @@ class DatabaseController extends ClientController {
       };
 
       final response = await database.createDocument(
-        collectionId: '65701b6af15b6882bb75',
+        collectionId: '657ad0a78ebe6dc347bd',
+        databaseId: '657ad08ea1bd792acd8d',
+        //collectionId: '65701b6af15b6882bb75',
         data: data,
-        databaseId: '65701b29620d89aeadb0',
+        //databaseId: '65701b29620d89aeadb0',
         documentId: ID.unique(),
       );
 
@@ -42,8 +44,10 @@ class DatabaseController extends ClientController {
   Future<List<Document>> getBookingFromAppwrite() async {
     try {
       final response = await database.listDocuments(
-        collectionId: "65701b6af15b6882bb75",
-        databaseId: '65701b29620d89aeadb0',
+        collectionId: '657ad0a78ebe6dc347bd',
+        databaseId: '657ad08ea1bd792acd8d',
+        //collectionId: "65701b6af15b6882bb75",
+        //databaseId: '65701b29620d89aeadb0',
       );
 
       return response.documents;
@@ -62,8 +66,11 @@ class DatabaseController extends ClientController {
         'Email': booking.email,
       };
       final response = await database.updateDocument(
-        collectionId: '65701b6af15b6882bb75',
-        databaseId: '65701b29620d89aeadb0',
+        collectionId: '657ad0a78ebe6dc347bd',
+        databaseId: '657ad08ea1bd792acd8d',
+        //collectionId: '65701b6af15b6882bb75',
+        //databaseId: '65701b29620d89aeadb0',
+        
         documentId: documentId,
         // ID dokumen yang akan diperbarui
         data: data,
@@ -78,9 +85,10 @@ class DatabaseController extends ClientController {
   Future<void> deleteBookingFromAppwrite(String documentId) async {
     try {
       final response = await database.deleteDocument(
-        collectionId: '65701b6af15b6882bb75',
-        // Ganti dengan ID koleksi di Appwrite
-        databaseId: '65701b29620d89aeadb0',
+        collectionId: '657ad0a78ebe6dc347bd',
+        databaseId: '657ad08ea1bd792acd8d',
+        //collectionId: '65701b6af15b6882bb75',
+        //databaseId: '65701b29620d89aeadb0',
         documentId: documentId, // ID dokumen yang akan dihapus
       );
 

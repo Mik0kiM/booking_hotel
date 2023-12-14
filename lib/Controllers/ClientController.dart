@@ -9,7 +9,8 @@ class ClientController extends GetxController {
     super.onInit();
     // appwrite
     const endPoint = "https://cloud.appwrite.io/v1";
-    const projectID = "6568698516aba8c6c330";
+    //const projectID = "6568698516aba8c6c330";
+    const projectID = "657ace42799af4591da5";
     client.setEndpoint(endPoint).setProject(projectID).setSelfSigned(status: true);
   }
 }

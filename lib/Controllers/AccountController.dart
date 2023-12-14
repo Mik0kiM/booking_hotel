@@ -31,9 +31,9 @@ class AccountController extends ClientController {
     }
   }
 
-  Future<void> createEmailSession(Map<String, dynamic> map) async {
+  Future<void> createEmailSession(Map<String, dynamic> map)  async {
     try {
-      final result = await account!.createEmailSession(
+      final result = account!.createEmailSession(
         email: map['email'],
         password: map['password'],
       );
