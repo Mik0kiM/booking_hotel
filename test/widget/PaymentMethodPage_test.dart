@@ -21,10 +21,9 @@ void main() {
 
     expect(find.text('Metode Pembayaran'), findsOneWidget);
     expect(find.text('Pilih Metode Pembayaran'), findsOneWidget);
+    expect(find.byType(ElevatedButton), findsOneWidget);
 
-    await tester.tap(find.text('Confirm'));
+    await tester.tap(warnIfMissed: false, (find.text('Confirm')));
     await tester.pump();
-
-
   });
 }
